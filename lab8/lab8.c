@@ -41,7 +41,7 @@ int main() {
 
     if (m71 == 0 && m72 == 0) {
         printf_s("%d %d", 0, 0);
-    } else if (m72 == 0 && m2 == 0 && mod(m71, 160) == mod(m1, 160)) {
+    } else if (m72 == 0 && m1 == 0 || m72 == 0 && m2 == 0 && mod(m71, 160) == mod(m1, 160)) {
         printf_s("%d %d", 0, 0);
     } else {
         if (m71 + m72 > max1 + max2) {
