@@ -165,6 +165,7 @@ int main() {
             case CHAR_N:
                 if (IsSeparator(c) || c == '.') {
                     Final(&inch);
+                    printf("%c", c);
                 } else {
                     PrintUnfinishedInch(&inch);
                     printf("%c", c);
@@ -175,7 +176,7 @@ int main() {
             default:
                 break;
         }
-        
+
         last_c = c;
     }
 
