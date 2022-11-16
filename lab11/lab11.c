@@ -24,12 +24,11 @@ void InitInch(struct Inch *inch) {
 void AddDigitToInch(struct Inch *inch, char c) {
     ++inch->size;
     if (inch->num == NULL) {
-        inch->num = malloc(sizeof(char) * 2);
+        inch->num = malloc(sizeof(char));
     } else {
-        inch->num = realloc(inch->num, sizeof(char) * (inch->size + 1));
+        inch->num = realloc(inch->num, sizeof(char) * inch->size);
     }
-    inch->num[inch->size - 1] = (char) c;
-    inch->num[inch->size] = '\000';
+    inch->num[inch->size - 1] = c;
 }
 
 void ResetInch(struct Inch *inch) {
