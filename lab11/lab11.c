@@ -14,15 +14,11 @@ int IsSeparator(char c) {
 struct Inch {
     char *num;
     size_t size;
-    int is_int;
-    int is_final;
 };
 
 void InitInch(struct Inch *inch) {
     inch->num = NULL;
     inch->size = 0;
-    inch->is_int = 1;
-    inch->is_final = 0;
 }
 
 void AddDigitToInch(struct Inch *inch, char c) {
@@ -34,51 +30,17 @@ void AddDigitToInch(struct Inch *inch, char c) {
     }
     inch->num[inch->size - 1] = (char) c;
     inch->num[inch->size] = '\000';
-    inch->is_int = inch->is_int ? c != '.' : 0;
 }
-
 
 void ResetInch(struct Inch *inch) {
     free(inch->num);
     inch->num = NULL;
     inch->size = 0;
-    inch->is_int = 1;
-    inch->is_final = 0;
-}
-
-double GetIntResult(struct Inch *inch) {
-    double res = 0;
-    for (int i = 0; i < inch->size - 2; ++i) {
-        res = res * 10 + (inch->num[i] - '0');
-    }
-    return res * MM_IN_INCH;
-}
-
-double GetDoubleResult(struct Inch *inch) {
-    double res = 0;
-    int second = 0;
-    int pow = 10;
-    for (int i = 0; i < inch->size - 2; ++i) {
-        if (!second && inch->num[i] != '.') {
-            res = res * 10 + (inch->num[i] - '0');
-        } else {
-            ++second;
-            res += (inch->num[i] - '0') / pow;
-            pow *= 10;
-        }
-    }
-    return res * MM_IN_INCH;
 }
 
 void Final(struct Inch *inch) {
-    inch->is_final = 1;
-    if (inch->is_int) {
-        double res = GetIntResult(inch);
-        printf("%gmm", res);
-    } else {
-        double res = GetDoubleResult(inch);
-        printf("%gmm", res);
-    }
+    double res = strtod(inch->num, NULL) * MM_IN_INCH;
+    printf("%gmm", res);
     ResetInch(inch);
 }
 
@@ -86,6 +48,7 @@ void PrintUnfinishedInch(struct Inch *inch) {
     printf("%s", inch->num);
     ResetInch(inch);
 }
+
 
 typedef enum {
     SEARCH, FIRST, DOT, SECOND, CHAR_I, CHAR_N
@@ -179,5 +142,4 @@ int main() {
 
         last_c = c;
     }
-
 }
