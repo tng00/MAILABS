@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #define MM_IN_INCH 25.4
 
@@ -19,6 +20,7 @@ struct Inch {
 void InitInch(struct Inch *inch) {
     inch->num = NULL;
     inch->size = 0;
+    assert(inch->num == NULL && inch->size == 0);
 }
 
 void AddDigitToInch(struct Inch *inch, char c) {
@@ -29,23 +31,28 @@ void AddDigitToInch(struct Inch *inch, char c) {
         inch->num = realloc(inch->num, sizeof(char) * inch->size);
     }
     inch->num[inch->size - 1] = c;
+    assert(inch->num[inch->size - 1] == c);
 }
 
 void ResetInch(struct Inch *inch) {
     free(inch->num);
     inch->num = NULL;
     inch->size = 0;
+    assert(inch->num == NULL && inch->size == 0);
 }
 
 void Final(struct Inch *inch) {
     double res = strtod(inch->num, NULL) * MM_IN_INCH;
     printf("%gmm", res);
+    assert(res == strtod(inch->num, NULL) * MM_IN_INCH);
     ResetInch(inch);
+    assert(inch->num == NULL && inch->size == 0);
 }
 
 void PrintUnfinishedInch(struct Inch *inch) {
     printf("%s", inch->num);
     ResetInch(inch);
+    assert(inch->num == NULL && inch->size == 0);
 }
 
 
@@ -54,7 +61,15 @@ typedef enum {
 } State;
 
 
+void UnitTests() {
+    assert(IsDigit('c') == 0);
+    assert(IsDigit('9') == 1);
+    assert(IsSeparator('r') == 0);
+    assert(IsSeparator('\t') == 1);
+};
+
 int main() {
+    UnitTests();
     char c;
     char last_c = EOF;
     struct Inch inch;
