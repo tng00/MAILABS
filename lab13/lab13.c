@@ -17,8 +17,8 @@ typedef enum {
 
 int main() {
     char c;
-    int32_t word = 0;
-    int32_t res = CONSONANTS;
+    u_int word = 0;
+    u_int res = CONSONANTS;
     State state = SEPARATOR;
     while ((c = getchar()) != EOF) {
         switch (state) {
