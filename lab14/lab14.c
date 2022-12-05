@@ -1,13 +1,19 @@
 #include <stdio.h>
 #include <assert.h>
 
+void swap(int* a, int* b) {
+    int c = *a;
+    *a = *b;
+    *b = c;
+}
+
 int main() {
-    int n;
+    int n, i, j, k;
     scanf("%d", &n);
-    assert(n <= 7);
+    assert(n >= 1 && n <= 7);
     int mat[n][n];
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
+    for (i = 0; i < n; ++i) {
+        for (j = 0; j < n; ++j) {
             scanf("%d", &mat[i][j]);
             printf("%d ", mat[i][j]);
         }
@@ -15,26 +21,25 @@ int main() {
     }
     printf("\n");
 
-    int k = 0,
-        cells = 0,
-        i;
-    while (cells < n * n) {
-        for (i = k; i <= n - 1 - k; ++i) {
-            printf("%d ", mat[k][i]);
-            ++cells;
+    for (k = 0; k < 2 * n - 1; ++k) {
+        if (k < n) {
+            i = 0;
+            j = k;
+        } else {
+            i = k - n + 1;
+            j = n - 1;
         }
-        for (i = k + 1; i <= n - 1 - k; ++i) {
-            printf("%d ", mat[i][n - 1 - k]);
-            ++cells;
+
+        if (k % 2 != 0) {
+            for (; i < n && j >= 0; ++i, --j) {
+                printf("%d ", mat[i][j]);
+            }
         }
-        for (i = n - 2 - k; i >= k; --i) {
-            printf("%d ", mat[n - 1 - k][i]);
-            ++cells;
+        else {
+            swap(&i, &j);
+            for (; i >= 0 && j < n; --i, ++j) {
+                printf("%d ", mat[i][j]);
+            }
         }
-        for (i = n - 2 - k; i >= 1 + k; --i) {
-            printf("%d ", mat[i][k]);
-            ++cells;
-        }
-        ++k;
     }
 }
