@@ -1,10 +1,20 @@
 # ВЫПОЛНЕННЫЕ ЛАБЫ:
 lab2  
 lab3  
-lab5 (7 variant)  
-lab6 (38 variant)  
-lab7 (14 variant)  
-lab8 (8 variant)  
-lab9 (3 variant)  
+lab5 (7)  
+lab6 (38)  
+lab7 (14)  
+lab8 (8)  
+lab9 (3)  
 lab10  
-lab11 (19 variant)  
+lab11 (19)  
+lab12 (16)  
+lab13 (12)  
+lab14 (8)  
+lab15 (22)  
+
+# ВЫПОЛНЕННЫЕ КУРСОВЫЕ ПРОЕКТЫ:  
+KP1  
+KP2  
+KP3 (1)  
+KP4 (16, 17)
