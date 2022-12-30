@@ -30,7 +30,7 @@ int main() {
     int count = 0;
     int iter;
 
-    printf("Enter number of iterations (n): ");
+    printf("Enter number of iterations (n): \n");
     scanf("%d", &iter);
     assert((iter > 0) && "Enter positive number!");
     printf("Enter the coefficient (k): ");
