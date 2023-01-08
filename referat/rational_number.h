@@ -135,9 +135,7 @@ public:
 
     // операторы сравнения ==, !=
     bool operator==(const RationalNumber &rhs) const {
-        RationalNumber temp = rhs;
-        temp.reduce();
-        return numerator == temp.Numerator() && denominator == temp.Denominator();
+        return numerator == rhs.Numerator() && denominator == rhs.Denominator();
     }
 
     bool operator!=(const RationalNumber &rhs) const {
